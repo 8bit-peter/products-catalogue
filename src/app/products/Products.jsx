@@ -5,6 +5,7 @@ import ContextProvider from '../context/ContextProvider';
 
 import { Header } from './header/Header';
 import { ProductsList } from './productsList/ProductsList';
+import { Pagination } from './pagination/Pagination';
 
 export const Products = () => {
 
@@ -13,7 +14,11 @@ export const Products = () => {
       <ContextProvider>
         <Header />
 
+        <Pagination />
+
         <ProductsList />
+
+        
 
       </ContextProvider>
     </>

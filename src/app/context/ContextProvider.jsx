@@ -6,6 +6,8 @@ const ContextProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isPromo, toggleIsPromo] = useState(false);
   const [isActive, toggleIsActive] = useState(false);
+  const [activePage, setActivePage] = useState(1);
+  const [pageCount, setPageCount] = useState();
 
   const updateSearch = (value) => {
     if (value !== '') {
@@ -23,9 +25,17 @@ const ContextProvider = ({ children }) => {
     toggleIsActive((prev) => !prev);
   }
 
+  const setPage = (value) => {
+    setActivePage(value);
+  }
+
+  const updatePageCount = (value) => {
+    setPageCount(value)
+  }
+
   return (
     <>
-      <GlobalContext.Provider value={{ searchQuery, updateSearch, isPromo, togglePromo, isActive, toggleActive }}>
+      <GlobalContext.Provider value={{ searchQuery, updateSearch, isPromo, togglePromo, isActive, toggleActive, activePage, setPage, pageCount, updatePageCount }}>
         {children}
       </GlobalContext.Provider>
     </>

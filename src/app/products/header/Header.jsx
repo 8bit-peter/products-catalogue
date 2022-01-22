@@ -13,9 +13,7 @@ align-items: center;
 
 const StyledLogo = styled.h2`
 margin-right: 105px;
-font-family: Nunito;
 font-size: 24px;
-font-weight: 600;
 line-height: 40px;
 `
 
@@ -38,9 +36,7 @@ const StyledInput = styled.input`
 border: 1px solid #E0E2EA;
 border-radius: 8px;
 padding: 16px;
-font-family: Nunito;
 font-size: 14px;
-font-weight: 600;
 line-height: 16px;
 width: 392px;
 `
@@ -94,8 +90,6 @@ align-items: center;
         }
 
         & + label {
-            font-family: Nunito;
-            font-weight: 600;
             font-size: 14px;
             line-height: 16px;
         }
@@ -107,7 +101,6 @@ background: #FFFFFF;
 border: 1px solid #4460F7;
 border-radius: 4px;
 padding: 11px 24px;
-font-family: Nunito;
 font-weight: 600;
 font-size: 14px;
 line-height: 16px;
