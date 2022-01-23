@@ -164,7 +164,7 @@ const Context = useContext(GlobalContext);
 
 const handleSearch = (e) => {
     let inputValue;
-    e.target.nodeName == 'IMG' ? inputValue = e.target.previousSibling.value : inputValue = e.target.value
+    e.target.nodeName === 'IMG' ? inputValue = e.target.previousSibling.value : inputValue = e.target.value
 
     Context.updateSearch(inputValue);
 }
