@@ -14,11 +14,9 @@ export const Products = () => {
       <ContextProvider>
         <Header />
 
-        <Pagination />
-
         <ProductsList />
 
-        
+        <Pagination />
 
       </ContextProvider>
     </>

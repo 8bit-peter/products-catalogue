@@ -4,7 +4,7 @@ import { GlobalContext } from '../../context/ContextProvider';
 
 import styled from 'styled-components';
 
-const StyledPaginationButton = styled.button`
+const StyledPaginationBorderButton = styled.button`
 padding: 0;
 margin: 0;
 outline: 0;
@@ -12,14 +12,15 @@ border: none;
 cursor: pointer;
 font-size: 14px;
 line-height: 16px;
-margin-right: ${props => props.last ? "0px" : "16px"};
+margin-right: ${props => props.position === 'left' ? "32px" : "0"};
+margin-left: ${props => props.position === 'left' ? "0px" : "32px"};
 
-    &.active {
-        color: #4460F7;
+    &.disabled {
+        color: #9194A5;
     }
 `
 
-export const PaginationButton = ({ value, ellipsis, last }) => {
+export const PaginationBorderButton = ({ value, text, position }) => {
   const Context = useContext(GlobalContext);
 
   const setActivePage = (e) => {
@@ -30,20 +31,14 @@ export const PaginationButton = ({ value, ellipsis, last }) => {
 
     return (
       <>
-        {ellipsis ? 
-        <StyledPaginationButton>
-          ...
-        </StyledPaginationButton>
-        :
-        <StyledPaginationButton 
+        {<StyledPaginationBorderButton 
             onClick={(e) => setActivePage(e)} 
             data-value={value}
-            className={(Context.activePage === value ? 'active' : '').toString()}
-            last={last}
+            className={ (Context.activePage === value ? 'disabled' : '').toString() }
+            position={position}
         >
-            {value}
-        </StyledPaginationButton>
-        }
+            {text}
+        </StyledPaginationBorderButton>}
       </>
     );
   };

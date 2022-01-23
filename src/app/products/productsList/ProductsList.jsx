@@ -60,7 +60,7 @@ export const ProductsList = () => {
   const prepareQuery = () => {
     const {isActive, isPromo, searchQuery, activePage} = Context;
 
-    const baseurl = "https://join-tsh-api-staging.herokuapp.com/products?limit=2"
+    const baseurl = "https://join-tsh-api-staging.herokuapp.com/products?limit=3"
     const searchParams = new URLSearchParams('')
 
     isActive && searchParams.set('active', isActive)
