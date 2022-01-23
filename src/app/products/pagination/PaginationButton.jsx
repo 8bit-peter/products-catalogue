@@ -12,10 +12,10 @@ border: none;
 cursor: pointer;
 font-size: 14px;
 line-height: 16px;
-margin-right: ${props => props.last ? "0px" : "16px"};
+margin-right: ${({last}) => last ? "0px" : "16px"};
 
     &.active {
-        color: #4460F7;
+        color: ${({ theme }) => theme.color.blue_400};
     }
 `
 

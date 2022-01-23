@@ -5,12 +5,25 @@ import IconEmptyList from '../../../assets/svg/icon-list-empty.svg';
 
 import { Product } from '../product/Product';
 import { GlobalContext } from '../../context/ContextProvider';
+import { Loader } from '../loader/Loader';
 
 const StyledWrapper = styled.div`
-display: grid;
-grid-template-columns: repeat(4, minmax(0, 25%));
-grid-gap: 32px 24px;
-padding: 56px 108px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 25%));
+  grid-gap: 32px 24px;
+  padding: 56px 108px;
+
+  ${({ theme }) => theme.mq.s} {
+    grid-template-columns: repeat(2, minmax(0, 50%));
+  }
+
+  ${({ theme }) => theme.mq.xs} {
+    padding: 24px;
+  }
+
+  ${({ theme }) => theme.mq.xxs} {
+    grid-template-columns: repeat(1, minmax(0, 100%));
+  }
 `;
 
 const StyledEmptyInfo = styled.div`
@@ -28,7 +41,7 @@ const StyledEmptyContent = styled.div`
   max-width: 600px;
   padding: 120px 0;
   border-radius: 8px;
-  background: #fff;
+  background: ${({ theme }) => theme.color.white};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,17 +63,18 @@ const StyledBottomInfo = styled.p`
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
-  color: #9194A5;
+  color: ${({ theme }) => theme.color.gray_700};
 `
 
 export const ProductsList = () => {
   const Context = useContext(GlobalContext);
   const [productsList, setProductsList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const prepareQuery = () => {
     const {isActive, isPromo, searchQuery, activePage} = Context;
 
-    const baseurl = "https://join-tsh-api-staging.herokuapp.com/products?limit=3"
+    const baseurl = "https://join-tsh-api-staging.herokuapp.com/products?limit=8"
     const searchParams = new URLSearchParams('')
 
     isActive && searchParams.set('active', isActive)
@@ -72,8 +86,10 @@ export const ProductsList = () => {
   
   useEffect(() => {
     fetch( prepareQuery() )
+    .then(setIsLoading(true))
     .then(response => response.json())
     .then( data => {
+      setIsLoading(false);
       setProductsList(data.items)
       Context.updatePageCount(data.meta.currentPage);
       Context.updatePageCount(data.meta.totalPages);
@@ -85,7 +101,10 @@ export const ProductsList = () => {
       <StyledWrapper>
 
         {
-          productsList.length > 0 
+          isLoading ?
+          <Loader />
+          :
+          (productsList.length > 0 
           ? productsList.map( product => (
               <Product
                 id={product.id}
@@ -99,7 +118,7 @@ export const ProductsList = () => {
                 <StyledTopInfo>Ooops… It’s empty here</StyledTopInfo>
                 <StyledBottomInfo>There are no products on the list</StyledBottomInfo>
               </StyledEmptyContent>
-            </StyledEmptyInfo>
+            </StyledEmptyInfo>)
         }
 
       </StyledWrapper>

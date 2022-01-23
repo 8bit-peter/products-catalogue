@@ -8,7 +8,7 @@ const StyledStarBox = styled.div`
 display: flex;
 align-items: center;
 margin-top: auto;
-margin-bottom: 24px;
+margin-bottom: 18px;
 `
 
 const StyledStarIcon = styled.img`
