@@ -66,35 +66,36 @@ const StyledBottomInfo = styled.p`
   color: ${({ theme }) => theme.color.gray_700};
 `
 
+const prepareQuery = ({isActive, isPromo, searchQuery, activePage}) => {
+
+  const baseurl = "https://join-tsh-api-staging.herokuapp.com/products?limit=8"
+  const searchParams = new URLSearchParams('')
+
+  isActive && searchParams.set('active', isActive)
+  isPromo && searchParams.set('promo', isPromo)
+  activePage && searchParams.set('page', activePage)
+  searchQuery !== '' && searchParams.set('search', searchQuery)
+  return searchParams.toString() ? `${baseurl}&${searchParams.toString()}` : baseurl
+}
+
 export const ProductsList = () => {
-  const Context = useContext(GlobalContext);
+  const {setPage, updatePageCount, searchQuery, isPromo, isActive, activePage} = useContext(GlobalContext);
+
   const [productsList, setProductsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const prepareQuery = () => {
-    const {isActive, isPromo, searchQuery, activePage} = Context;
-
-    const baseurl = "https://join-tsh-api-staging.herokuapp.com/products?limit=8"
-    const searchParams = new URLSearchParams('')
-
-    isActive && searchParams.set('active', isActive)
-    isPromo && searchParams.set('promo', isPromo)
-    activePage && searchParams.set('page', activePage)
-    searchQuery !== '' && searchParams.set('search', searchQuery)
-    return searchParams.toString() ? `${baseurl}&${searchParams.toString()}` : baseurl
-  }
   
   useEffect(() => {
-    fetch( prepareQuery() )
+    fetch( prepareQuery({isActive, isPromo, searchQuery, activePage}) )
     .then(setIsLoading(true))
     .then(response => response.json())
     .then( data => {
       setIsLoading(false);
       setProductsList(data.items)
-      Context.updatePageCount(data.meta.currentPage);
-      Context.updatePageCount(data.meta.totalPages);
+      setPage(data.meta.currentPage);
+      updatePageCount(data.meta.totalPages);
     })
-  }, [Context.searchQuery, Context.isPromo, Context.isActive, Context.activePage])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery, isPromo, isActive, activePage])
 
   return (
     <>
