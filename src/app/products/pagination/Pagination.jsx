@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { PaginationButton } from './PaginationButton';
 import { PaginationBorderButton } from './PaginationBorderButton';
 
-import { GlobalContext } from '../../context/ContextProvider';
+import { ProductsContext } from '../../context/ContextProvider';
 
 const StyledPagination = styled.div`
 display: flex;
@@ -13,8 +13,8 @@ margin-bottom: 56px;
 `
 
 export const Pagination = () => {
-  const Context = useContext(GlobalContext);
-  const {activePage, pageCount} = Context;
+  const Context = useContext(ProductsContext);
+  const {activePage, pageCount} = Context.productsData;
 
   //function to render first 3 buttons if total page count > 6
   const renderFirstThree = (page) => {

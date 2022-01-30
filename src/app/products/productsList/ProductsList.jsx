@@ -4,7 +4,7 @@ import styled from "styled-components";
 import IconEmptyList from '../../../assets/svg/icon-list-empty.svg';
 
 import { Product } from '../product/Product';
-import { GlobalContext } from '../../context/ContextProvider';
+import { ProductsContext } from '../../context/ContextProvider';
 import { Loader } from '../loader/Loader';
 
 const StyledWrapper = styled.div`
@@ -79,7 +79,8 @@ const prepareQuery = ({isActive, isPromo, searchQuery, activePage}) => {
 }
 
 export const ProductsList = () => {
-  const {setPage, updatePageCount, searchQuery, isPromo, isActive, activePage} = useContext(GlobalContext);
+  const Context = useContext(ProductsContext);
+  const {searchQuery, isPromo, isActive, activePage} = Context.productsData;
 
   const [productsList, setProductsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -91,8 +92,13 @@ export const ProductsList = () => {
     .then( data => {
       setIsLoading(false);
       setProductsList(data.items)
-      setPage(data.meta.currentPage);
-      updatePageCount(data.meta.totalPages);
+
+      Context.setProductData((prevState) => ({
+        ...prevState,
+        activePage: data.meta.currentPage,
+        pageCount: data.meta.totalPages
+      }))
+
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, isPromo, isActive, activePage])

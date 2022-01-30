@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import IconClose from '../../../assets/svg/icon-close-x.svg';
 
-import { GlobalContext } from '../../context/ContextProvider';
+import { ProductsContext } from '../../context/ContextProvider';
 
 const StyledModalParent = styled.div`
   position: fixed;
@@ -45,17 +45,28 @@ const StyledCloseIcon = styled.img`
 `
 
 const StyledModalImageBox = styled.div`
-  max-height: 350px;
+  height: 354px;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   border-radius: 8px 8px 0 0;
+  background-color: ${({theme}) => theme.color.gray_700};
 `
 
 const StyledModalImage = styled.img`
   max-width: 100%;
   display: block;
+
+  ${({ theme }) => theme.mq.xs} {
+    min-width: 100%;
+  }
+
+  ${({ theme }) => theme.mq.xxs} {
+    min-width: initial;
+    max-width: initial;
+    height: 100%;
+  }
 `
 
 const StyledModalContent = styled.div`
@@ -71,33 +82,40 @@ const StyledModalTitle = styled.h4`
 const StyledModalDescription = styled.p`
   font-size: 18px;
   line-height: 24px;
-  color: ${({ theme }) => theme.color.gray_700};;
+  color: ${({ theme }) => theme.color.gray_700};
 `
 
+const handleClose = (Context) => {
+  Context.setProductData((prevState) => ({
+    ...prevState,
+    modalOpen: false,
+  }))
+}
+
 export const ProductModal = () => {
-  const Context = useContext(GlobalContext);
+  const Context = useContext(ProductsContext);
 
-    return (
-      <>
-        <StyledModalParent isOpen={Context.modalOpen}>
-            <StyledModal>
-              <StyledModalCloseIcon onClick={() =>  Context.toggleModal()}>
-                <StyledCloseIcon src={IconClose} />
-              </StyledModalCloseIcon>
-              
-              <StyledModalImageBox>
-                <StyledModalImage src={Context.modalImg} />
-              </StyledModalImageBox>
+  return (
+    <>
+      <StyledModalParent isOpen={Context.productsData.modalOpen}>
+          <StyledModal>
+            <StyledModalCloseIcon onClick={() => handleClose(Context)}>
+              <StyledCloseIcon src={IconClose} />
+            </StyledModalCloseIcon>
+            
+            <StyledModalImageBox>
+              <StyledModalImage src={Context.productsData.modalImg} />
+            </StyledModalImageBox>
 
-              <StyledModalContent>
-                <StyledModalTitle>{Context.modalTitle}</StyledModalTitle>
-                <StyledModalDescription>{Context.modalText}</StyledModalDescription>
-              </StyledModalContent>
+            <StyledModalContent>
+              <StyledModalTitle>{Context.productsData.modalTitle}</StyledModalTitle>
+              <StyledModalDescription>{Context.productsData.modalText}</StyledModalDescription>
+            </StyledModalContent>
 
 
-            </StyledModal>
-        </StyledModalParent>
-      </>
-    );
-  };
+          </StyledModal>
+      </StyledModalParent>
+    </>
+  );
+};
   

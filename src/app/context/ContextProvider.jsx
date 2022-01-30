@@ -1,76 +1,30 @@
 import React, { createContext, useState } from "react";
 
-export const GlobalContext = createContext();
+export const ProductsContext = createContext();
 
 const ContextProvider = ({ children }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isPromo, toggleIsPromo] = useState(false);
-  const [isActive, toggleIsActive] = useState(false);
-  
-  const [activePage, setActivePage] = useState(1);
-  const [pageCount, setPageCount] = useState();
+  const [productsData, setProductsData] = useState({
+    searchQuery: '',
+    isPromo: false,
+    isActive: false,
+    activePage: 1,
+    pageCount: null,
+    modalOpen: false,
+    modalImg: null,
+    modalTitle: null,
+    modalText: null,
+  })
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalImg, setModalImage] = useState();
-  const [modalTitle, setModalTitle] = useState();
-  const [modalText, setModalText] = useState();
-
-  const updateSearch = (value) => {
-    if (value !== '') {
-      setSearchQuery(value);
-    } else {
-      setSearchQuery('');
-    }
-  };
-
-  const togglePromo = () => {
-    toggleIsPromo((prev) => !prev);
-  }
-
-  const toggleActive = () => {
-    toggleIsActive((prev) => !prev);
-  }
-
-  const setPage = (value) => {
-    setActivePage(value);
-  }
-
-  const updatePageCount = (value) => {
-    setPageCount(value)
-  }
-
-  const toggleModal = () => {
-    setModalOpen((prev) => !prev)
-  }
-
-  const setModalImg = (value) => {
-    setModalImage(value)
-  }
-
-  const setModalTtl = (value) => {
-    setModalTitle(value)
-  }
-
-  const setModalTxt = (value) => {
-    setModalText(value)
+  const setProductData = (value) => {
+    setProductsData(value)
   }
 
   return (
     <>
-      <GlobalContext.Provider 
-        value={{ 
-          searchQuery, updateSearch, 
-          isPromo, togglePromo, 
-          isActive, toggleActive, 
-          activePage, setPage, 
-          pageCount, updatePageCount, 
-          modalOpen, toggleModal,
-          modalImg, setModalImg,
-          modalTitle, setModalTtl,
-          modalText, setModalTxt
-        }}>
+      <ProductsContext.Provider 
+        value={{ productsData, setProductData }}>
           {children}
-      </GlobalContext.Provider>
+      </ProductsContext.Provider>
     </>
   );
 };

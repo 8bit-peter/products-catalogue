@@ -1,7 +1,7 @@
 import React , { useContext } from "react";
 import styled from "styled-components";
 import IconSearch from '../../../assets/svg/icon-search.svg';
-import { GlobalContext } from '../../context/ContextProvider';
+import { ProductsContext } from '../../context/ContextProvider';
 
 
 const StyledHeader = styled.header`
@@ -160,13 +160,37 @@ const StyledLoginButton = styled.button`
 `
 
 export const Header = () => {
-const Context = useContext(GlobalContext);
+const Context = useContext(ProductsContext);
 
 const handleSearch = (e) => {
     let inputValue;
     e.target.nodeName === 'IMG' ? inputValue = e.target.previousSibling.value : inputValue = e.target.value
 
-    Context.updateSearch(inputValue);
+    Context.setProductData((prevState) => ({
+        ...prevState,
+        searchQuery: inputValue !== '' ? inputValue : '',
+        activePage: 1
+    }))
+}
+
+const handleActive = (e) => {
+    const activeStatus = e.target.checked
+
+    Context.setProductData((prevState) => ({
+        ...prevState,
+        isActive: activeStatus,
+        activePage: 1
+    }))
+}
+
+const handlePromo = (e) => {
+    const promoStatus = e.target.checked
+
+    Context.setProductData((prevState) => ({
+        ...prevState,
+        isPromo: promoStatus,
+        activePage: 1
+    }))
 }
 
 return (
@@ -181,12 +205,12 @@ return (
 
         <StyledFiltersBox>
             <StyledFilterBox>
-                <input type="checkbox" name="active" id="active" onClick={() =>  Context.toggleActive()} />
+                <input type="checkbox" name="active" id="active" onClick={(e) =>  handleActive(e)} />
                 <label htmlFor="active">Active</label>
             </StyledFilterBox>
 
             <StyledFilterBox>
-                <input type="checkbox" name="promo" id="promo" onClick={() => Context.togglePromo()} />
+                <input type="checkbox" name="promo" id="promo" onClick={(e) => handlePromo(e)} />
                 <label htmlFor="promo">Promo</label>
             </StyledFilterBox>
         </StyledFiltersBox>

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from "styled-components";
 import { ProductStars } from './ProductStars';
 
-import { GlobalContext } from '../../context/ContextProvider';
+import { ProductsContext } from '../../context/ContextProvider';
 
 const StyledProduct = styled.div`
   width: 100%;
@@ -15,13 +15,14 @@ const StyledProduct = styled.div`
 `
 
 const StyledImageBox = styled.div`
-  max-height: 170px;
+  height: 170px;
   overflow:hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   border-radius: 8px 8px 0 0;
+  background-color: ${({theme}) => theme.color.gray_700};
 
     img {
       max-width: 100%;
@@ -86,19 +87,21 @@ const StyledProductButton = styled.button`
 `
 
 export const Product = ({product}) => {
-  const Context = useContext(GlobalContext);
+  const Context = useContext(ProductsContext);
   const {promo, image, name, description, rating, active} = product;
-  const {setModalImg, setModalTtl, setModalTxt, toggleModal} = Context;
 
   const handleModal = (e) => {
     const targetImage = e.target.dataset.img;
     const targetTitle = e.target.dataset.title;
     const targetDescription = e.target.dataset.description;
 
-    setModalImg(targetImage);
-    setModalTtl(targetTitle);
-    setModalTxt(targetDescription);
-    toggleModal();
+    Context.setProductData((prevState) => ({
+      ...prevState,
+      modalImg: targetImage,
+      modalTitle: targetTitle,
+      modalText: targetDescription,
+      modalOpen: true,
+    }))
   }
 
   return (

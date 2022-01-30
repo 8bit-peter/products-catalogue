@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { GlobalContext } from '../../context/ContextProvider';
+import { ProductsContext } from '../../context/ContextProvider';
 
 import styled from 'styled-components';
 
@@ -20,12 +20,15 @@ margin-right: ${({last}) => last ? "0px" : "16px"};
 `
 
 export const PaginationButton = ({ value, ellipsis, last }) => {
-  const Context = useContext(GlobalContext);
+  const Context = useContext(ProductsContext);
 
   const setActivePage = (e) => {
     const pageButtonValue = parseInt(e.target.dataset.value);
 
-    Context.setPage(pageButtonValue);
+    Context.setProductData((prevState) => ({
+      ...prevState,
+      activePage: pageButtonValue
+    }))
   }
 
     return (

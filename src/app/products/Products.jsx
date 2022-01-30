@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 // import { AppRoute } from '../../routing/AppRoute.enum';
-import ContextProvider from '../context/ContextProvider';
+import ProductsContext from '../context/ContextProvider';
 
 import styled from 'styled-components';
 import theme from '../../styles/theme'
@@ -19,7 +19,7 @@ export const Products = () => {
 
   return (
     <>
-      <ContextProvider>
+      <ProductsContext>
         <StyledProductsParent theme={theme}>
           <Header />
 
@@ -29,7 +29,7 @@ export const Products = () => {
 
           <ProductModal />
         </StyledProductsParent>
-      </ContextProvider>
+      </ProductsContext>
     </>
   );
 };
