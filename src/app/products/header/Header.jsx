@@ -196,7 +196,7 @@ const handlePromo = (e) => {
 return (
     <>
       <StyledHeader>
-        <StyledLogo>join.tsh.io</StyledLogo>
+        <StyledLogo>Products catalogue</StyledLogo>
           
         <StyledInputBox>
             <StyledInput type="text" placeholder='Search' onKeyPress={(e) => e.key === 'Enter' && handleSearch(e)}/>

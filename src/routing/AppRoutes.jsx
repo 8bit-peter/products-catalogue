@@ -12,7 +12,7 @@ export const AppRoutes = () => {
       <Route path={AppRoute.home} exact component={Products} />
       <Route path={AppRoute.login} component={Login} />
 
-      <Redirect to={AppRoute.home} />
+      <Redirect to={AppRoute.home} exact component={Products} />
     </Switch>
   );
 };
