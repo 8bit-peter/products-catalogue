@@ -1,28 +1,28 @@
 {
   "files": {
     "main.css": "/products-catalogue/static/css/main.55a8aabd.chunk.css",
-    "main.js": "/products-catalogue/static/js/main.fb420b26.chunk.js",
-    "main.js.map": "/products-catalogue/static/js/main.fb420b26.chunk.js.map",
+    "main.js": "/products-catalogue/static/js/main.257f8f1c.chunk.js",
+    "main.js.map": "/products-catalogue/static/js/main.257f8f1c.chunk.js.map",
     "runtime-main.js": "/products-catalogue/static/js/runtime-main.025c6724.js",
     "runtime-main.js.map": "/products-catalogue/static/js/runtime-main.025c6724.js.map",
     "static/js/2.44f5e555.chunk.js": "/products-catalogue/static/js/2.44f5e555.chunk.js",
     "static/js/2.44f5e555.chunk.js.map": "/products-catalogue/static/js/2.44f5e555.chunk.js.map",
     "index.html": "/products-catalogue/index.html",
-    "precache-manifest.5eba73fc931965a22168168d51413ae5.js": "/products-catalogue/precache-manifest.5eba73fc931965a22168168d51413ae5.js",
+    "precache-manifest.07976f4b820dae3433046b09e1f6785c.js": "/products-catalogue/precache-manifest.07976f4b820dae3433046b09e1f6785c.js",
     "service-worker.js": "/products-catalogue/service-worker.js",
     "static/css/main.55a8aabd.chunk.css.map": "/products-catalogue/static/css/main.55a8aabd.chunk.css.map",
     "static/js/2.44f5e555.chunk.js.LICENSE.txt": "/products-catalogue/static/js/2.44f5e555.chunk.js.LICENSE.txt",
-    "static/media/icon-close-x.svg": "/products-catalogue/static/media/icon-close-x.a594ab60.svg",
-    "static/media/icon-list-empty.svg": "/products-catalogue/static/media/icon-list-empty.ed5a35d5.svg",
-    "static/media/icon-loader.svg": "/products-catalogue/static/media/icon-loader.8c25c2b4.svg",
-    "static/media/icon-search.svg": "/products-catalogue/static/media/icon-search.1f9315f4.svg",
-    "static/media/icon-star--empty.svg": "/products-catalogue/static/media/icon-star--empty.2f01c390.svg",
-    "static/media/icon-star--full.svg": "/products-catalogue/static/media/icon-star--full.78a96900.svg"
+    "static/media/icon-close-x.svg": "/products-catalogue/static/media/icon-close-x.b116055d.svg",
+    "static/media/icon-list-empty.svg": "/products-catalogue/static/media/icon-list-empty.35fb8261.svg",
+    "static/media/icon-loader.svg": "/products-catalogue/static/media/icon-loader.a9b1f4ee.svg",
+    "static/media/icon-search.svg": "/products-catalogue/static/media/icon-search.0fca17ba.svg",
+    "static/media/icon-star--empty.svg": "/products-catalogue/static/media/icon-star--empty.12de72de.svg",
+    "static/media/icon-star--full.svg": "/products-catalogue/static/media/icon-star--full.d1365094.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.025c6724.js",
     "static/js/2.44f5e555.chunk.js",
     "static/css/main.55a8aabd.chunk.css",
-    "static/js/main.fb420b26.chunk.js"
+    "static/js/main.257f8f1c.chunk.js"
   ]
 }
