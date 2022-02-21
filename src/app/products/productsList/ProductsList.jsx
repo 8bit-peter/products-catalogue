@@ -105,7 +105,7 @@ export const ProductsList = () => {
 
   return (
     <>
-      <StyledWrapper>
+      <StyledWrapper data-testid="products-list">
 
         {
           isLoading ?
